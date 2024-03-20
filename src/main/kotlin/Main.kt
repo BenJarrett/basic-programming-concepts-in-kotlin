@@ -1,210 +1,121 @@
-// LISTS - DATA STRUCTURE - KOTLIN HAS TWO TYPES OF EVERY DATA STRUCTURE , MUTABLE
-// AND
-// IMMUTABLE //
-
-// IMMUTABLE LIST - USE listOf() to instantiate - Any list created using listOf() is IMMUTABLE //
-// LIST - A sequence of elements in which order matters //
 //fun main() {
-//	val boysList = listOf("Greg", "James", "Aaron", "Bob") // IMMUTABLE LIST OF STRING
-//	// ELEMENTS //
-//	println("boysList (initialized using listOf()) : $boysList") // Print out //
 //
-//	// Explicitly specifying the type parameter when using listOf() is not recommended //
-//	val girlsList = listOf<String>("Julie", "Nora", "Sandra", "Nina")
-//	println("girlsList (initialized using listOf<String>()) : $girlsList")
+//	// SETS // - Another common data structure. A unique collection of elements, where an element
+//// can occur exactly one. THERE ARE NO DUPLICATES - There is no ordering, it does not matter //
+//	// IMMUTABLE SETS //
+//	// setOf() Method - Creates set of elements - immutable //
 //
-//	// When using the default listOf, under the hood  is an arrayList, a list backed by
-//	// an array, elements in contiguous locations //
-//
-//	val arrayList = ArrayList<String>() // Explicitly creating and arrayList //
-//	arrayList.add("Jack")
-//	arrayList.add("Nora")
-//	arrayList.add("Michael")
-//
-//	println("arrayList (initialized using ArrayList<String>()) : $arrayList")
-//
-//	// CREATING LIST OF A DIFFERENT TYPE //
-//	// LINKED LIST - ONE ELEMENT POINTS TO THE NEXT ONE IN THE LIST //
-//	val linkedList = LinkedList<String>()
-//	linkedList.add("Dylan")
-//	linkedList.add("Jessica")
-//
-//	println("linkedList (initialized using LinkedList<String>()) : $linkedList")
-//	// LINKED LIST //
-//
-//	// EMPTY LIST - If instantiating an empty list, you HAVE to specify the type in
-//	// angular brackets //
-//	val emptyList = listOf<String>()
-//
-//	println("emptyList (initialized using listOf<String>()) : $emptyList")
-//	// EMPTY LIST //
-//	// CREATING LIST OF A DIFFERENT TYPE //
-//
+//	val peopleSet = setOf("Greg", "Alice", "Bob", "Greg", "Alice") // Greg and Alice are
+//	// duplicates, when the set is create, the duplicates will be eliminated //
+//	println("peopleSet (initialized using setOf()) : $peopleSet")
 //	// RESULT //
-////	boysList (initialized using listOf()) : [Greg, James, Aaron, Bob]
-////	girlsList (initialized using listOf<String>()) : [Julie, Nora, Sandra, Nina]
-////	arrayList (initialized using ArrayList<String>()) : [Jack, Nora, Michael]
-////	linkedList (initialized using LinkedList<String>()) : [Dylan, Jessica]
-////	emptyList (initialized using listOf<String>()) : []
+////	peopleSet (initialized using setOf()) : [Greg, Alice, Bob]
 //	// RESULT //
-//}
-
-
-// DUPLICATED ELEMENTS LIST EX. //
-// These can contain duplicate elements, where as SETS can only include unique values //
-
-//fun main() {
 //
-//	val peopleList = listOf("Greg", "James", "Bob", "Claudia", "Claudia" )
-//
-//
-//	println("peopleList : $peopleList")
-//	println("Size of peopleList : ${peopleList.size}")
-//
-//	println("First Element of peopleList : ${peopleList[0]}") // Access first element in the list //
-//	println("Last element of peopleList : ${peopleList[peopleList.size - 1 ]}") // .size gives us
-//	// the number of elements in the list // // We are using the square brackets again, but this
-//	// time to  access the last element of the list which is at index position peopleList.size -1
-//	// . That is  number of elements minus one. That is the last index position //
-//
-//	// Both SETS AND LISTS support the contains() method - Tells you whether or not it contains a
-//	// a specific element //
-//	println("Does peopleList contain Alice? : ${peopleList.contains("Alice")}")
-//	println("Subset of peopleList : ${peopleList.subList(1,3)}") // Get part of the list starting
-//	// at element 1 and up to, but not including the element at index position 3 //
-//
-//
-//	println("Is peopleList empty? : ${peopleList.isEmpty()}")
-//	println("Is peopleList NOT EMPTY? : ${peopleList.isNotEmpty()}")
-
+//	// This technique for creating sets IS NOT RECOMMENDED
+//	// The duplicate peter is eliminated
+//	val anotherPeopleSet = setOf<String>("Julie","Peter","Brian","Charles","Peter")
+//	println("anotherPeopleSet (initialized using setOf<String>()) : $anotherPeopleSet")
 // RESULT //
-//	peopleList : [Greg, James, Bob, Claudia, Claudia]
-//	Size of peopleList : 5
-//	First Element of peopleList : Greg
-//			Last element of peopleList : Claudia
-//			Does peopleList contain Alice? : false
-//	Subset of peopleList : [James, Bob]
-//	Is peopleList empty? : false
-//	Is peopleList NOT EMPTY? : true
+//	anotherPeopleSet (initialized using setOf<String>()) : [Julie, Peter, Brian, Charles]
 // RESULT //
+
+// linkedHashSet() - MUTABLE - TAKES UP MORE MEMORY - Maintains the order of the elements in
+// the set, based on the order in which you added those elements, but because it maintains an additional linked list kind of
+// structure, IT TAKES UP MORE MEMORY SPACE. // Used to retrieve the elements in the set in the order in which you added those elements to the set - Specific use case. Main
+// This LinkedHashSet orders elements but takes up more space in memory
+// Still removes duplicates bc it's a SET
+//	val orderedPeopleSet = LinkedHashSet<String>()
+//	orderedPeopleSet.add("Nora")
+//	orderedPeopleSet.add("Michael")
+//	orderedPeopleSet.add("Nora")
+//	orderedPeopleSet.add("Judy")
+//	println("orderedPeopleSet (initialized using LinkedHashSet<String>) : $orderedPeopleSet")
+//	// RESULT //
+////	orderedPeopleSet (initialized using LinkedHashSet<String>) : [Nora, Michael, Judy]
+//	// RESULT //
+//
+//
+//	// When obstantiating an EMPTY SET, like in the examples below, you have to specify the type
+//	// parameter of the elements in that set //
+//	// HASH SET - HashSet<String>() - DOES NOT maintain the order of the elements // Takes up
+//// less memory space compared to linkedHasSet() bc it DOESN'T use a kind of linked list like // structure
+//// USE CASE - If you don't really care about the order in which the elements of a set are accessed.
+//	// This HashSet does NOT order elements, but takes up less memory space
+//	// STILL REMOVES DUPLICATES like any other set
+//	// Elements may be printed in any random order
+//	//
+//	val unorderedPeopleSet = HashSet<String>()
+//	unorderedPeopleSet.add("Daisy")
+//	unorderedPeopleSet.add("Geoff")
+//	unorderedPeopleSet.add("Geoff")
+//	unorderedPeopleSet.add("Thomas")
+//	println("unorderedPeopleList (initialized using HashSet<String>) : $unorderedPeopleSet")
+//	// RESULT //
+////	unorderedPeopleList (initialized using HashSet<String>) : [Thomas, Daisy, Geoff]
+//	// RESULT //
+//
 //}
 
+//	// IMMUTABLE SETS //
+// SETS //
 
-// DUPLICATED ELEMENTS LIST EX. //
-
-// Collections support a variety of methods and operations //
-
-//fun main() {
-//	val numbersList = listOf(20, 34, 56, 76, 11, 37)
-//	println("numbersList : $numbersList")
-//
-//	// Predicates
-//	// Invoking a number of predicates on the list to test for specific conditions //
-//	println("Test if any() > 50 true : ${numbersList.any { it > 50 }}") // See if any element in
-//// the list is greater than 50, doing so by invoking the any() method and passing in the
-//// predicate condition on my list // Invoking any() by passing in a trailing Lambda //
-//	println("Test if none() > 100 true : ${numbersList.none { it > 100 }}")
-//	println("Test if all() < 60 true : ${numbersList.all { it < 60 }}")
-//
-//	// FILTERING
-//	val greaterThan50 = numbersList.filter { it > 50 } // gives all elements in numbersList that
-//	// are greater than 50, and store them in a new list called greaterThan50 //
-//	println("Greater than 50 : $greaterThan50")
-//
-//	// Plus and Minus // - LISTS in KOTLIN support the PLUS and MINUS operators //
-//	// Can use these to add and subtract elements to a list //
-//	// We then asked it to store the new result into a new list called plusList //
-//	val plusList = numbersList + 100 + 200
-//	println("Added Elements: $plusList")
-//
-//	val minusList = numbersList - listOf(56, 76)
-//	println("Subtracted Elements: $minusList")
-//}
-// EXPECTED RESULTS //
-//	numbersList : [20, 34, 56, 76, 11, 37]
-//	Test if any() > 50 true : true
-//	Test if none() > 100 true : true
-//	Test if all() < 60 true : false
-//	Greater than 50 : [56, 76]
-//	Added Elements: [20, 34, 56, 76, 11, 37, 100, 200]
-//	Subtracted Elements: [20, 34, 11, 37]
-// EXPECTED RESULTS //
-
-// LISTOF() LISTS ARE IMMUTABLE //
-// EX. OF THE ERROR YOU WOULD SEE //
-// Error - "No set method providing array access //
-//fun main() {
-//	val numbersList = listOf(20, 34, 56, 76, 11, 37)
-//
-//	numbersList[0] = 1000
-//}
-
-// CREATING A MUTABLE LIST - mutableListOf() //
-//fun main() {
-//	val numbersList = mutableListOf(20, 34, 56, 76, 11, 37)
-//
-//	numbersList[0] = 1000 // changing the first element to 1000
-//
-//	println("Mutated List : $numbersList")
-//
-//	// EXPECTED RESULT //
-//
-////	Mutated List : [1000, 34, 56, 76, 11, 37]
-//
-//	// EXPECTED RESULT //
-//}
-
+// MUTABLE SETS - mutableSetOf() //
 fun main() {
+	val numberSet = mutableSetOf(23.5, 56.1, 45.7, 88.9)
 
-	// ADDITIONAL OPERATIONS //
-	// MUTABLE LIST WITH OTHER OPERATIONS //
-	val peopleList = mutableListOf("Greg", "James", "Alice", "Bob")
-	println("Original peopleList")
-	println("peopleList : $peopleList")
-	println()
+	println("Original numberSet: $numberSet")
 
-	// REMOVE AT
-	peopleList.removeAt(3) // remove which element you want to remove
-	println("Removing element from list")
-	println("peopleList : $peopleList")
-	println()
+	numberSet.add(102.9)
+	numberSet.remove(23.5)
+	println("Updated numberSet: $numberSet")
 
-	// MODIFY ELEMENT IN LIST
-	println("Modifying element in list")
-	peopleList[1] = "Larry"
-	println("peopleList : $peopleList")
-	println()
 
-	// SHUFFLE OR RANDOMIZE LIST
-	println("Shuffling elements in list")
-	peopleList.shuffle()
-	println("peopleList : $peopleList")
-	println()
+	// SET SPECIFIC OPERATIONS //
+
+	// UNION - Combines the elements of the set with the elements of the new set that is
+// specified.
+	// When performing the Union operation in the manner below, the RESULT IS A NEW SET. THE
+	// ORIGINAL NUMBERSET REMAINS UNCHANGED //
+	println("Union operation")
+	println(numberSet union setOf(1000.34, 2000.23)) // Union the contents of numberSet with a
+	// set of two numbers 1000.34 and 2000.23
+	// Duplicates are removed
+	println("Original numberSet: $numberSet") // For my reference to show that the original set
+	// is unchanged and the Union created a new set that did not change the original
+	// UNION //
+
+	// INTERSECT - Will return a set with the elements that are common between the two sets that
+	// you have intersected //
+	println("Intersection Operation")
+	println(numberSet intersect setOf(1000.34, 56.1, 45.7)) // numberSet intersect setOf and
+// specified three elements, 1000.34, 56.1, and 45.7
+	// 1000.34 is not part of the original numberSet, but the other two elements 56.1 and 45.7
+// are common between the two sets and that will be the result
+	// INTERSECT //
+
+	// SUBTRACTION - Computes the difference between the two compared sets //
+	println("Subtract Operation")
+	println(numberSet subtract setOf(1000.34, 56.1)) // If you look at numberSet and the set we
+// are subtracting from it, you can see that the element 1000.34 is not present in the
+// original numberSet, bu the element 56.1 is present. The element that is present will be
+// subtracted from the original set
+	// 546.1 will be removed from the original set, and we will get a new set as the result
+	// SUBTRACTION //
 
 	// RESULTS //
-// Original peopleList
-	//peopleList : [Greg, James, Alice, Bob]
-	//
-	//Removing element from list
-	//peopleList : [Greg, James, Alice]
-	//
-	//Modifying element in list
-	//peopleList : [Greg, Larry, Alice]
-	//
-	//Shuffling elements in list
-	//peopleList : [Larry, Greg, Alice]
+//	Original numberSet: [23.5, 56.1, 45.7, 88.9]
+//	Updated numberSet: [56.1, 45.7, 88.9, 102.9]
+//	Union operation
+//			[56.1, 45.7, 88.9, 102.9, 1000.34, 2000.23]
+//	Original numberSet: [56.1, 45.7, 88.9, 102.9]
+//	Intersection Operation
+//			[56.1, 45.7]
+//	Subtract Operation
+//			[45.7, 88.9, 102.9]
 	// RESULTS //
 
-	// ADDITIONAL OPERATIONS //
-
+	// SET SPECIFIC OPERATIONS //
 }
 
-// CREATING A MUTABLE LIST - mutableListOf() //
-
-// LISTOF() LISTS ARE IMMUTABLE //
-
-// IMMUTABLE LIST - USE listOf() to instantiate //
-
-
-
-
+// MUTABLE SETS - mutableSetOf() //
